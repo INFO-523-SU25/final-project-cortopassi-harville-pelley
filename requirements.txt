@@ -1,8 +1,9 @@
 jupyter
 nbformat
+quarto
 numpy
 pandas
 seaborn
 matplotlib
 scipy
-sklearn
+scikit-learn

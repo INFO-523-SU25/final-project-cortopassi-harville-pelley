@@ -6,7 +6,7 @@ website:
   navbar:
     right:
       - icon: github
-        href: https://github.com/INFO-523-SU24/final-project # Need to change to your project repo
+        href: https://github.com/INFO-523-SU25/final-project-cortopassi-harville-pelley # Need to change to your project repo
     left:
       - text: Project
         href: index.qmd

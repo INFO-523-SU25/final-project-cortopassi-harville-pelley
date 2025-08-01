@@ -1,2 +1,8 @@
 jupyter
 nbformat
+numpy
+pandas
+seaborn
+matplotlib
+scipy
+sklearn

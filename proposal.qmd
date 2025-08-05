@@ -30,7 +30,6 @@ import pandas as pd
 #| label: load-dataset
 #| message: false
 
-# This is a placeholder. Replace with actual file paths when ready.
 people = pd.read_csv("data/People.csv")
 batting = pd.read_csv("data/Batting.csv")
 pitching = pd.read_csv("data/Pitching.csv")

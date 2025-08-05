@@ -25,7 +25,7 @@ jupyter: python3
 #| message: false
 import numpy as np
 import pandas as pd
-```
+
 
 #| label: load-dataset
 #| message: false
@@ -40,6 +40,8 @@ pitching_post = pd.read_csv("data/PitchingPost.csv")
 fielding_post = pd.read_csv("data/FieldingPost.csv")
 hof = pd.read_csv("data/HallOfFame.csv")
 
+```
+
 
 We are using the Lahman Baseball Database because it contains rich, historical MLB data that spans from the 1800s to the present day. Our data includes career statistics and achievements of players in the following dimensions:
 
@@ -49,11 +51,11 @@ We are using the Lahman Baseball Database because it contains rich, historical M
 - Teams: Team performance stats
 - HallOfFame: Hall of Fame voting results
 
-Each table includes a playerID column, allowing us to merge across data sources. For example, the batting dataset has r"{batting.shape[0]:,}" rows and r"{batting.shape[1]}" columns, and the halloffame table provides our labels with r"{hof.shape[0]:,}" entries.
+Each table includes a playerID column, allowing us to merge across data sources.
 
 Questions
-1. Can we predict whether a player will be inducted into the MLB Hall of Fame based on their career statistics and achievements?
-2. What features (e.g., batting stats, pitching metrics, postseason performance) are most predictive of a Hall of Fame induction?
+- Can we predict whether a player will be inducted into the MLB Hall of Fame based on their career statistics and achievements?
+- What features (e.g., batting stats, pitching metrics, postseason performance) are most predictive of a Hall of Fame induction?
 
 Analysis Plan
 
@@ -61,33 +63,33 @@ Data Preparation
 Merge datasets using playerID. Aggregate season-level stats into career totals. Handle missing values and perform EDA.
 
 Feature Engineering
-Austin: Aggregate batting and batting_post, calculate derived metrics like AVG, OPS, HR/year.
-David: Aggregate pitching and pitching_post, derive metrics such as WHIP, K/BB, quality starts.
-Nate: Aggregate fielding and fielding_post, derive metrics like position flexibility, total chances, defensive WAR.
+- Austin: Aggregate batting and batting_post, calculate derived metrics like AVG, OPS, HR/year.
+- David: Aggregate pitching and pitching_post, derive metrics such as WHIP, K/BB, quality starts.
+- Nate: Aggregate fielding and fielding_post, derive metrics like position flexibility, total chances, defensive WAR.
 
 Modeling & Evaluation
-Train baseline models: logistic regression, decision tree
-Tune hyperparameters and evaluate using metrics like accuracy, precision, recall, F1-score, AUC
-Analyze feature importances and model performance
-Tools: Python, pandas, scikit-learn, matplotlib, seaborn, Jupyter/Quarto
+- Train baseline models: logistic regression, decision tree
+- Tune hyperparameters and evaluate using metrics like accuracy, precision, recall, F1-score, AUC
+- Analyze feature importances and model performance
+- Tools: Python, pandas, scikit-learn, matplotlib, seaborn, Jupyter/Quarto
 
 Weekly Planning
 
 Week 1:
-Load and clean all 9 datasets
-Merge into a unified DataFrame
-Initial EDA
+- Load and clean all 9 datasets
+- Merge into a unified DataFrame
+- Initial EDA
 
 Week 2:
-Aggregate season stats to career-level
-Engineer new features
-Merge with Hall of Fame labels
+- Aggregate season stats to career-level
+- Engineer new features
+- Merge with Hall of Fame labels
 
 Week 3:
-Train and tune models (logistic regression, decision tree)
-Evaluate performance
+- Train and tune models (logistic regression, decision tree)
+- Evaluate performance
 
 Week 4:
-Final model assessment
-Data visualizations and feature analysis
-Write final report and create presentation
+- Final model assessment
+- Data visualizations and feature analysis
+- Write final report and create presentation

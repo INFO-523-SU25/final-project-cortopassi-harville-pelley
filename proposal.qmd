@@ -27,24 +27,21 @@ import numpy as np
 import pandas as pd
 ```
 
+## **Data Example**
+
 ```{python}
 #| label: load-dataset
 #| message: false
 
 
 people = pd.read_csv("data/People.csv")
-batting = pd.read_csv("data/Batting.csv")
-pitching = pd.read_csv("data/Pitching.csv")
-fielding = pd.read_csv("data/Fielding.csv")
-teams = pd.read_csv("data/Teams.csv")
-batting_post = pd.read_csv("data/BattingPost.csv")
-pitching_post = pd.read_csv("data/PitchingPost.csv")
-fielding_post = pd.read_csv("data/FieldingPost.csv")
-hof = pd.read_csv("data/HallOfFame.csv")
+people.head(5)
 ```
 
 
 We are using the Lahman Baseball Database because it contains rich, historical MLB data that spans from the 1800s to the present day. Our data includes career statistics and achievements of players in the following dimensions:
+
+Source: Society For American Baseball Research - [Lahman Baseball Dataset](https://sabr.org/lahman-database/)
 
 - People: Player biographical data
 - Batting, Pitching, Fielding: Regular season performance
@@ -54,27 +51,27 @@ We are using the Lahman Baseball Database because it contains rich, historical M
 
 Each table includes a playerID column, allowing us to merge across data sources.
 
-Questions  
+## **Questions**  
 Can we predict whether a player will be inducted into the MLB Hall of Fame based on their career statistics and achievements?  
 What features (e.g., batting stats, pitching metrics, postseason performance) are most predictive of a Hall of Fame induction?
 
-Analysis Plan
+## **Analysis Plan**
 
-Data Preparation  
+**Data Preparation  **
 Merge datasets using playerID. Aggregate season-level stats into career totals. Handle missing values and perform EDA.
 
-Feature Engineering  
+**Feature Engineering  **
 - Austin: Aggregate batting and batting_post, calculate derived metrics like AVG, OPS, HR/year.  
 - David: Aggregate pitching and pitching_post, derive metrics such as WHIP, K/BB, quality starts.  
 - Nate: Aggregate fielding and fielding_post, derive metrics like position flexibility, total chances, defensive WAR.
 
-Modeling & Evaluation  
+**Modeling & Evaluation  **
 - Train baseline models: logistic regression, decision tree  
 - Tune hyperparameters and evaluate using metrics like accuracy, precision, recall, F1-score, AUC  
 - Analyze feature importances and model performance  
 - Tools: Python, pandas, scikit-learn, matplotlib, seaborn, Jupyter/Quarto
 
-Weekly Planning
+## **Weekly Planning**
 
 Week 1:  
 - Load and clean all 9 datasets  

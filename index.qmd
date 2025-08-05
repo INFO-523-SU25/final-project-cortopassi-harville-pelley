@@ -1,13 +1,13 @@
 ---
-title: "Project Title"
+title: "Predicting MLB Hall of Fame Inductions"
 subtitle: "INFO 523 - Final Project"
 author: 
-  - name: "Team name - Team member 1, Team member 2,..."
+  - name: "Team Fastball - Austin Cortopassi, David Pelley, Nathan Harville"
     affiliations:
       - name: "College of Information Science, University of Arizona"
-description: "Project description"
+description: "Using historical player data from the Lahman Baseball Database to predict Hall of Fame inductions through machine learning."
 format:
-   html:
+  html:
     code-tools: true
     code-overflow: wrap
     embed-resources: true
@@ -18,6 +18,9 @@ execute:
 jupyter: python3
 ---
 
-## Abstract
 
-Add project abstract here.
+Abstract
+Major League Baseball's Hall of Fame selection process remains one of the most prestigious yet subjective honors in professional sports. 
+In this project, we aim to develop a machine learning model capable of predicting whether a player will be inducted into the Hall of Fame based on career-level statistics and achievements. 
+Utilizing the Lahman Baseball Database, which includes detailed player records spanning over a century, we will perform data cleaning, feature engineering, and model training using logistic regression and decision trees. 
+Our goal is not only to achieve high prediction accuracy, but also to identify which career metrics most significantly influence Hall of Fame voting outcomes.

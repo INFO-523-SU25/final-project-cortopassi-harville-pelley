@@ -1,11 +1,11 @@
 ---
-title: "Proposal title"
+title: "Predicting MLB Hall of Fame Inductions"
 subtitle: "Proposal"
 author: 
-  - name: "Team Name - Team member 1, Team member 2,..."
+  - name: "Team Fastball - Austin Cortopassi, David Pelley, Nathan Harville"
     affiliations:
       - name: "College of Information Science, University of Arizona"
-description: "Project description"
+description: "Building a machine learning model to predict whether a Major League Baseball player will be inducted into the Hall of Fame using career statistics and achievements."
 format:
   html:
     code-tools: true
@@ -19,27 +19,76 @@ execute:
 jupyter: python3
 ---
 
+
 ```{python}
 #| label: load-pkgs
 #| message: false
 import numpy as np
+import pandas as pd
 ```
 
-## Dataset
-
-```{python}
 #| label: load-dataset
 #| message: false
-```
 
-A brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.
+# This is a placeholder. Replace with actual file paths when ready.
+people = pd.read_csv("data/People.csv")
+batting = pd.read_csv("data/Batting.csv")
+pitching = pd.read_csv("data/Pitching.csv")
+fielding = pd.read_csv("data/Fielding.csv")
+teams = pd.read_csv("data/Teams.csv")
+batting_post = pd.read_csv("data/BattingPost.csv")
+pitching_post = pd.read_csv("data/PitchingPost.csv")
+fielding_post = pd.read_csv("data/FieldingPost.csv")
+hof = pd.read_csv("data/HallOfFame.csv")
 
-Make sure to load the data and use inline code for some of this information.
 
-## Questions
+We are using the Lahman Baseball Database because it contains rich, historical MLB data that spans from the 1800s to the present day. Our data includes career statistics and achievements of players in the following dimensions:
 
-The two questions you want to answer.
+- People: Player biographical data
+- Batting, Pitching, Fielding: Regular season performance
+- BattingPost, PitchingPost, FieldingPost: Postseason performance
+- Teams: Team performance stats
+- HallOfFame: Hall of Fame voting results
 
-## Analysis plan
+Each table includes a playerID column, allowing us to merge across data sources. For example, the batting dataset has r"{batting.shape[0]:,}" rows and r"{batting.shape[1]}" columns, and the halloffame table provides our labels with r"{hof.shape[0]:,}" entries.
 
--   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
+Questions
+1. Can we predict whether a player will be inducted into the MLB Hall of Fame based on their career statistics and achievements?
+2. What features (e.g., batting stats, pitching metrics, postseason performance) are most predictive of a Hall of Fame induction?
+
+Analysis Plan
+
+Data Preparation
+Merge datasets using playerID. Aggregate season-level stats into career totals. Handle missing values and perform EDA.
+
+Feature Engineering
+Austin: Aggregate batting and batting_post, calculate derived metrics like AVG, OPS, HR/year.
+David: Aggregate pitching and pitching_post, derive metrics such as WHIP, K/BB, quality starts.
+Nate: Aggregate fielding and fielding_post, derive metrics like position flexibility, total chances, defensive WAR.
+
+Modeling & Evaluation
+Train baseline models: logistic regression, decision tree
+Tune hyperparameters and evaluate using metrics like accuracy, precision, recall, F1-score, AUC
+Analyze feature importances and model performance
+Tools: Python, pandas, scikit-learn, matplotlib, seaborn, Jupyter/Quarto
+
+Weekly Planning
+
+Week 1:
+Load and clean all 9 datasets
+Merge into a unified DataFrame
+Initial EDA
+
+Week 2:
+Aggregate season stats to career-level
+Engineer new features
+Merge with Hall of Fame labels
+
+Week 3:
+Train and tune models (logistic regression, decision tree)
+Evaluate performance
+
+Week 4:
+Final model assessment
+Data visualizations and feature analysis
+Write final report and create presentation

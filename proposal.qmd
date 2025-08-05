@@ -20,13 +20,6 @@ jupyter: python3
 ---
 
 
-```{python}
-#| label: load-pkgs
-#| message: false
-import numpy as np
-import pandas as pd
-```
-
 ## **Data Example**
 
 ```{python}
@@ -57,15 +50,15 @@ What features (e.g., batting stats, pitching metrics, postseason performance) ar
 
 ## **Analysis Plan**
 
-**Data Preparation  **
+**Data Preparation  **  
 Merge datasets using playerID. Aggregate season-level stats into career totals. Handle missing values and perform EDA.
 
-**Feature Engineering  **
+**Feature Engineering  **  
 - Austin: Aggregate batting and batting_post, calculate derived metrics like AVG, OPS, HR/year.  
 - David: Aggregate pitching and pitching_post, derive metrics such as WHIP, K/BB, quality starts.  
 - Nate: Aggregate fielding and fielding_post, derive metrics like position flexibility, total chances, defensive WAR.
 
-**Modeling & Evaluation  **
+**Modeling & Evaluation  **  
 - Train baseline models: logistic regression, decision tree  
 - Tune hyperparameters and evaluate using metrics like accuracy, precision, recall, F1-score, AUC  
 - Analyze feature importances and model performance  

@@ -27,10 +27,11 @@ import numpy as np
 import pandas as pd
 ```
 
+```{python}
 #| label: load-dataset
 #| message: false
 
-```{python}
+
 people = pd.read_csv("data/People.csv")
 batting = pd.read_csv("data/Batting.csv")
 pitching = pd.read_csv("data/Pitching.csv")

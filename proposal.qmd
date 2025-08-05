@@ -25,11 +25,12 @@ jupyter: python3
 #| message: false
 import numpy as np
 import pandas as pd
-
+```
 
 #| label: load-dataset
 #| message: false
 
+```{python}
 people = pd.read_csv("data/People.csv")
 batting = pd.read_csv("data/Batting.csv")
 pitching = pd.read_csv("data/Pitching.csv")
@@ -39,7 +40,6 @@ batting_post = pd.read_csv("data/BattingPost.csv")
 pitching_post = pd.read_csv("data/PitchingPost.csv")
 fielding_post = pd.read_csv("data/FieldingPost.csv")
 hof = pd.read_csv("data/HallOfFame.csv")
-
 ```
 
 

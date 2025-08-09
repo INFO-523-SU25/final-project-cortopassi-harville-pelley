@@ -65,10 +65,17 @@ Merge datasets using playerID. Aggregate season-level stats into career totals. 
 - David: Aggregate pitching and pitching_post, derive metrics such as WHIP, K/BB, quality starts.  
 - Nate: Aggregate fielding and fielding_post, derive metrics like position flexibility, total chances, defensive WAR.
 
+Each team member will be responsible for the following sections for their respective choice of position. Austin will work batting, David will work on pitching and Nate will work on fielding. The team will then incorporate a model to evaluate all of these against historic inductees to predict future inductees. If needed the team will adjust positional player statistics, meaning combining batting and fielding or focusing solely on starting pitchers if relief pitchers cause too much noise in the data.
+
 **Modeling & Evaluation  **  
 - Train baseline models: logistic regression, decision tree  
 - Tune hyperparameters and evaluate using metrics like accuracy, precision, recall, F1-score, AUC  
 - Analyze feature importances and model performance  
+- Address issues with model performance and adjust. 
+- Train different models like random forest and evaluate their performance against our baseline model. 
+- Incorporate new features and evaluate the model performance against baseline model.
+- Look into synethetic minority oversampling techniques (SMOTE) to adjust class imabalance issues. 
+- Tune features based on model performance and standardize, normalize or drop alltogether. 
 - Tools: Python, pandas, scikit-learn, matplotlib, seaborn, Jupyter/Quarto
 
 ## **Weekly Planning**
@@ -77,17 +84,27 @@ Week 1:
 - Load and clean all 9 datasets  
 - Merge into a unified DataFrame  
 - Initial EDA
-
-Week 2:  
 - Aggregate season stats to career-level  
 - Engineer new features  
 - Merge with Hall of Fame labels
 
-Week 3:  
+Week 2:  
 - Train and tune models (logistic regression, decision tree)  
 - Evaluate performance
+- Incorporate new features as needed
+- Adjust cleaning and standardization as needed
+- Finalize features/models that show the best performance
 
-Week 4:  
+Week 3:  
 - Final model assessment  
 - Data visualizations and feature analysis  
 - Write final report and create presentation
+
+## **Repository Organization**
+- .github: Issue templates and workflows
+- _extra: Extra tools as needed
+- _freeze: Site execution packages
+- _data: Source data and metadata
+- _src: Source code
+- _images: Storage for visualizations for paper and presentation
+

@@ -49,3 +49,4 @@ with ui.sidebar():
 @render.text
 def show_selection():
     return f"You selected: {input.player()}"
+```

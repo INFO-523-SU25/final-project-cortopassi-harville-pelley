@@ -45,3 +45,4 @@ def show_player(player):
 
 interact(show_player, player=Dropdown(options=player_names, description="Player:"))
 
+```

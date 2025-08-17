@@ -24,3 +24,24 @@ Major League Baseball's Hall of Fame selection process remains one of the most p
 In this project, we aim to develop a machine learning model capable of predicting whether a player will be inducted into the Hall of Fame based on career-level statistics and achievements. 
 Utilizing the Lahman Baseball Database, which includes detailed player records spanning over a century, we will perform data cleaning, feature engineering, and model training using logistic regression and decision trees. 
 Our goal is not only to achieve high prediction accuracy, but also to identify which career metrics most significantly influence Hall of Fame voting outcomes.
+
+
+Results
+```{python}
+import pandas as pd
+from ipywidgets import interact, Dropdown
+
+# Load dataset
+people = pd.read_csv("data/People.csv")
+
+# Combine first and last names
+people['full_name'] = people['nameFirst'] + " " + people['nameLast']
+
+# Build dropdown options
+player_names = sorted(people['full_name'].dropna().unique())
+
+def show_player(player):
+    print(f"You selected: {player}")
+
+interact(show_player, player=Dropdown(options=player_names, description="Player:"))
+

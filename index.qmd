@@ -11,7 +11,7 @@ format:
     code-tools: true
     code-overflow: wrap
     embed-resources: true
-filters: [shiny]   
+    engine: shiny  
 editor: visual
 execute:
   warning: false

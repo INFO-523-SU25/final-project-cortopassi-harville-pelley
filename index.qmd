@@ -11,7 +11,8 @@ format:
     code-tools: true
     code-overflow: wrap
     embed-resources: true
-    engine: shiny  
+    engine: shiny
+server: shiny
 editor: visual
 execute:
   warning: false
@@ -38,15 +39,12 @@ from shiny.express import input, ui, render
 people = pd.read_csv("data/People.csv")
 people['full_name'] = people['nameFirst'].fillna("") + " " + people['nameLast'].fillna("")
 
-# Create dropdown options
 player_names = sorted(name.strip() for name in people['full_name'].unique() if name.strip())
 
-# Sidebar dropdown
 with ui.sidebar():
     ui.input_select("player", "Select a Player:", choices=player_names)
 
-# Display the selected player
 @render.text
-def show_selection():
+def selection():
     return f"You selected: {input.player()}"
 ```

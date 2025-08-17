@@ -31,6 +31,7 @@ Our goal is not only to achieve high prediction accuracy, but also to identify w
 
 ```{python}
 import pandas as pd
+import joblib
 from ipywidgets import Dropdown, Output, VBox
 
 # Load dataset
@@ -38,20 +39,41 @@ people = pd.read_csv("data/People.csv")
 people['full_name'] = people['nameFirst'].fillna('') + " " + people['nameLast'].fillna('')
 player_names = sorted([name.strip() for name in people['full_name'].unique() if name.strip()])
 
-# Create dropdown and output
+# Load pre-trained model
+bat_model = joblib.load("models/batting_model.pkl")
+bat_feature_columns = joblib.load("models/batting_model_columns.pkl")
+
+# Load the dataset with all features your model expects
+# Replace with the path to the dataset you used for training
+stats_df = pd.read_csv("data/batting_hof_elig_transformed.csv")  
+
+# Dropdown and output widgets
 dropdown = Dropdown(options=player_names, description="Player:")
 out = Output()
 
-# Function to handle selection
-def show_player(change):
+def predict_hof(change):
+    player_name = change['new']
     with out:
         out.clear_output()
-        print(f"You selected: {change['new']}")
+        player_row = people.loc[people['full_name'] == player_name]
+        if player_row.empty:
+            print(f"{player_name} → Player data not found.")
+            return
+        player_id = player_row['playerID'].values[0]
+        features_row = stats_df.loc[stats_df['playerID'] == player_id]
+        if features_row.empty:
+            print(f"{player_name} → Stats data not found.")
+            return
+        
+        model_features = features_row[bat_feature_columns]
+        pred = bat_model.predict(model_features)[0]
+        result = "Predicted: Inducted" if pred == 1 else "Predicted: Not Inducted"
+        print(f"{player_name} → {result}")
 
 # Observe dropdown changes
-dropdown.observe(show_player, names='value')
+dropdown.observe(predict_hof, names='value')
 
-# Display dropdown and output together
+# Display dropdown and output
 ui = VBox([dropdown, out])
 ui
 ```

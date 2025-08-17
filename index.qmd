@@ -34,20 +34,23 @@ import pandas as pd
 import joblib
 from ipywidgets import Dropdown, Output, VBox
 
-# Load dataset
+# Load player names
 people = pd.read_csv("data/People.csv")
 people['full_name'] = people['nameFirst'].fillna('') + " " + people['nameLast'].fillna('')
 player_names = sorted([name.strip() for name in people['full_name'].unique() if name.strip()])
 
-# Load pre-trained model
+# Load models + feature columns
 bat_model = joblib.load("models/batting_model.pkl")
 bat_feature_columns = joblib.load("models/batting_model_columns.pkl")
 
-# Load the dataset with all features your model expects
-# Replace with the path to the dataset you used for training
-stats_df = pd.read_csv("data/batting_hof_elig_transformed.csv")  
+pitch_model = joblib.load("models/pitching_model.pkl")
+pitch_feature_columns = joblib.load("models/pitching_model_columns.pkl")
 
-# Dropdown and output widgets
+# Load transformed datasets
+batting_stats = pd.read_csv("data/batting_hof_elig_transformed.csv")
+pitching_stats = pd.read_csv("data/pitching_hof_elig_transformed.csv")
+
+# Dropdown + output
 dropdown = Dropdown(options=player_names, description="Player:")
 out = Output()
 
@@ -59,21 +62,42 @@ def predict_hof(change):
         if player_row.empty:
             print(f"{player_name} → Player data not found.")
             return
-        player_id = player_row['playerID'].values[0]
-        features_row = stats_df.loc[stats_df['playerID'] == player_id]
-        if features_row.empty:
-            print(f"{player_name} → Stats data not found.")
-            return
         
-        model_features = features_row[bat_feature_columns]
-        pred = bat_model.predict(model_features)[0]
-        result = "Predicted: Inducted" if pred == 1 else "Predicted: Not Inducted"
-        print(f"{player_name} → {result}")
+        player_id = player_row['playerID'].values[0]
 
-# Observe dropdown changes
+        # --- Batting prediction ---
+        bat_result = None
+        bat_row = batting_stats.loc[batting_stats['playerID'] == player_id]
+        if not bat_row.empty:
+            bat_features = bat_row[bat_feature_columns]
+            bat_pred = bat_model.predict(bat_features)[0]
+            bat_result = "Inducted" if bat_pred == 1 else "Not Inducted"
+
+        # --- Pitching prediction ---
+        pitch_result = None
+        pitch_row = pitching_stats.loc[pitching_stats['playerID'] == player_id]
+        if not pitch_row.empty:
+            pitch_features = pitch_row[pitch_feature_columns]
+            pitch_pred = pitch_model.predict(pitch_features)[0]
+            pitch_result = "Inducted" if pitch_pred == 1 else "Not Inducted"
+
+        # Print results
+        print(f"Results for {player_name}:")
+        if bat_result is not None:
+            print(f"  Batting model → {bat_result}")
+        else:
+            print("  Batting stats not found.")
+        
+        if pitch_result is not None:
+            print(f"  Pitching model → {pitch_result}")
+        else:
+            print("  Pitching stats not found.")
+
+# Hook up dropdown
 dropdown.observe(predict_hof, names='value')
 
-# Display dropdown and output
+# UI
 ui = VBox([dropdown, out])
 ui
+
 ```

@@ -11,6 +11,7 @@ format:
     code-tools: true
     code-overflow: wrap
     embed-resources: true
+filters: [shiny]   
 editor: visual
 execute:
   warning: false
@@ -18,31 +19,33 @@ execute:
 jupyter: python3
 ---
 
+Abstract  
+Major League Baseball's Hall of Fame selection process remains one of the most prestigious yet subjective honors in professional sports.  
+In this project, we aim to develop a machine learning model capable of predicting whether a player will be inducted into the Hall of Fame based on career-level statistics and achievements.  
+Utilizing the Lahman Baseball Database, which includes detailed player records spanning over a century, we will perform data cleaning, feature engineering, and model training using logistic regression and decision trees.  
+Our goal is not only to achieve high prediction accuracy, but also to identify which career metrics most significantly influence Hall of Fame voting outcomes.  
 
-Abstract
-Major League Baseball's Hall of Fame selection process remains one of the most prestigious yet subjective honors in professional sports. 
-In this project, we aim to develop a machine learning model capable of predicting whether a player will be inducted into the Hall of Fame based on career-level statistics and achievements. 
-Utilizing the Lahman Baseball Database, which includes detailed player records spanning over a century, we will perform data cleaning, feature engineering, and model training using logistic regression and decision trees. 
-Our goal is not only to achieve high prediction accuracy, but also to identify which career metrics most significantly influence Hall of Fame voting outcomes.
+---
 
+## Results
 
-Results
 ```{python}
 import pandas as pd
-from ipywidgets import interact, Dropdown
+from shiny import reactive
+from shiny.express import input, ui, render
 
 # Load dataset
 people = pd.read_csv("data/People.csv")
+people['full_name'] = people['nameFirst'].fillna("") + " " + people['nameLast'].fillna("")
 
-# Combine first and last names
-people['full_name'] = people['nameFirst'] + " " + people['nameLast']
+# Create dropdown options
+player_names = sorted(name.strip() for name in people['full_name'].unique() if name.strip())
 
-# Build dropdown options
-player_names = sorted(people['full_name'].dropna().unique())
+# Sidebar dropdown
+with ui.sidebar():
+    ui.input_select("player", "Select a Player:", choices=player_names)
 
-def show_player(player):
-    print(f"You selected: {player}")
-
-interact(show_player, player=Dropdown(options=player_names, description="Player:"))
-
-```
+# Display the selected player
+@render.text
+def show_selection():
+    return f"You selected: {input.player()}"

@@ -36,9 +36,18 @@ The primary three statistics we used were:
 - Pitching Statistics - includes earned run average (ERA), stirkeouts, wins, saves, and related metrics.
 - Fielding Statistics - includes putouts, assists, errors, and fielding percentage.
 
+Our goal was to seperate and create two seperate models. One for making predictions on general players (players who bat regularly), and pitchers. To do this we needed to seperate datasets that contain statistics oriented more towards each of the two categories of players. 
+
 Our target variable for the project was the column "Inducted" which indicates if a player was elected to the Hall of Fame. This is a binary statistic 1 for elected 0 for not elected.
 
+### Exploratory Data Analysis (EDA)
+Before training we needed to do some data analysis and implement some adjustments to better suit modeling. We addressed the following areas while working on the EDA portion of our project.
 
+- Distribution - Visualized the distribuitions of many of the statistics columns and analyzed which adjustments may need to be made to certain columns for the data to better suit modeling.
+- Correlations - Our team created correlation matrix to analyze the hidden relationships between certain data features.
+- Separation - As spoke about earlier we noticed there are two primary categories of players inducted into the hall of fame. Pitchers whos game is analyzed almost entirely based on their pitching statistics; ERA, wins, etc. And general players or batters (players who perform both in the field and at bat). Because of this distinct separartion in playe types, we needed to split into two datasets to analyze the positions better.
+
+### Modeling Approach
 
 
 

@@ -27,5 +27,18 @@ Our goal is not only to achieve high prediction accuracy, but also to identify w
 
 ---
 
-## Results
+## Project Write Up
+
+### Data Preparation
+We utilized the Lahman Baseball Database, which is publicly available dataset containing a wide array of career statistics for MLB players dating all the way back to the late 1800s.
+The primary three statistics we used were:
+- Batting Statistics - includes hits, homeruns, batting average, RBIs, and other offensive statistics.
+- Pitching Statistics - includes earned run average (ERA), stirkeouts, wins, saves, and related metrics.
+- Fielding Statistics - includes putouts, assists, errors, and fielding percentage.
+
+Our target variable for the project was the column "Inducted" which indicates if a player was elected to the Hall of Fame. This is a binary statistic 1 for elected 0 for not elected.
+
+
+
+
 

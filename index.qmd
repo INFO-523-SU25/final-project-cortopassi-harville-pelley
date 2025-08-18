@@ -86,10 +86,7 @@ We evaluated model performance using several classification metrics:
 
 ------- NEED TO INCLUDE PERFORMANCE DETAILS HERE ------------------ 
 
-### Conclusions
-
-
-## Conclusion
+### Conclusion
 
 Our project showed that career statistics can be used to build models that predict Hall of Fame induction with reasonable accuracy. 
 

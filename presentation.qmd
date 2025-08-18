@@ -73,8 +73,7 @@ execute:
 **Metrics Used**
 - Accuracy → overall correctness  
 - Precision & Recall → false positives/negatives  
-- F1 Score → balance of precision & recall  
-- ROC-AUC → separation of inducted vs. non-inducted  
+- F1 Score → balance of precision & recall   
 
 ---
 

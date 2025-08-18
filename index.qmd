@@ -85,8 +85,6 @@ We evaluated model performance using several classification metrics:
   - Useful for checking how well the models avoid false positives and false negatives.  
 - **F1 Score** 
   - Balances precision and recall into a single measure.  
-- **ROC-AUC** 
-  - Shows how well the models separate inducted from non-inducted players across thresholds.  
 
 - **Model Accuracy**
   - The table below shows the accuracy of each model in correctly predicting hall of fame induction for all eligible MLB players.

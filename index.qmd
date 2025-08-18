@@ -94,8 +94,16 @@ We evaluated model performance using several classification metrics:
 | Random Forest| 0.92 | 0.91 |
 | XGBoost | 0.92 | 0.91 |
 | Naive Bayes | 0.68 | 0.84 |
+
 ------- NEED TO INCLUDE PERFORMANCE DETAILS HERE ------------------ 
-![Batting PCA] 
+**Batting PCA**
+As shown in the figure below 5 metrics accounted for 90% of the variance in batting statistics.
+![Batting PCA] (../images/batting_pca.png)
+
+**Pitching PCA**
+As shown in the figure below 5 metrics accounted for 90% of the variance in batting statistics.
+![Pitching PCA] (../images/pitching_pca.png)
+
 ### Conclusion
 
 Our project showed that career statistics can be used to build models that predict Hall of Fame induction with reasonable accuracy. 

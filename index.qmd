@@ -40,7 +40,7 @@ The primary three statistics we used were:
 
 - **Fielding Statistics:** includes putouts, assists, errors, and fielding percentage.
 
-Our goal was to seperate and create two seperate models. One for making predictions on position players (players who bat regularly), and pitchers. To do this we needed to seperate datasets that contain statistics oriented more towards each of the two categories of players. 
+Our goal was to create two seperate models, between position players (batters) and pitchers. To do this we needed to seperate datasets that contain statistics oriented more towards each of the two categories of players. 
 
 Our target variable for the project was the column "Inducted" which indicates if a player was elected to the Hall of Fame. This is a binary statistic 1 for elected 0 for not elected.
 
@@ -88,6 +88,8 @@ We evaluated model performance using several classification metrics:
 - **ROC-AUC** 
   - Shows how well the models separate inducted from non-inducted players across thresholds.  
 
+- **Model Accuracy**
+  - The table below shows the accuracy of each model in correctly predicting hall of fame induction for all eligible MLB players.
 
 | Model | Batting Accuracy | Pitching Accuracy |
 |:---------|:--------:|---------:|
@@ -95,18 +97,36 @@ We evaluated model performance using several classification metrics:
 | XGBoost | 0.92 | 0.91 |
 | Naive Bayes | 0.68 | 0.84 |
 
-------- NEED TO INCLUDE PERFORMANCE DETAILS HERE ------------------ 
-**Batting PCA**
-As shown in the figure below 5 metrics accounted for 90% of the variance in batting statistics.
-![Batting PCA] (../images/batting_pca.png)
+- **Batting PCA**
+  - As shown in the figure below 5 metrics accounted for 90% of the variance in batting statistics.
+  - ![Batting PCA] (../images/batting_pca.png)
 
-**Pitching PCA**
-As shown in the figure below 5 metrics accounted for 90% of the variance in batting statistics.
-![Pitching PCA] (../images/pitching_pca.png)
+- **Pitching PCA**
+  - As shown in the figure below 4 metrics accounted for 90% of the variance in pitching statistics.
+  - ![Pitching PCA] (../images/pitching_pca.png)
+
+- **Batting Random Forest Results**
+  - ![Batting Random Forest Results](../images/batting_rf_results.png)
+
+- **Batting XGBoost Results**
+  - ![Batting XGBoost Results](../images/batting_xgb_results.png)
+
+- **Batting Naive Bayes Results**
+  - ![Batting Naive Bayes Results](../images/batting_nb_results.png)
+
+- **Pitching Random Forest Results**
+  - ![Pitching Random Forest Results](../images/pitching_rf_results.png)
+
+- **Pitching XGBoost Results**
+  - ![Pitching XGBoost Results](../images/pitching_xgb_results.png)
+
+- **Pitching Naive Bayes Results**
+  - ![Pitching Naive Bayes Results](../images/pitching_nb_results.png)
+
 
 ### Conclusion
 
-Our project showed that career statistics can be used to build models that predict Hall of Fame induction with reasonable accuracy. 
+Our project showed that career statistics can be used to build models that predict Hall of Fame induction with significant accuracy. 
 
 --- SUMMARIZE MODEL PERFORMANCES ---
 

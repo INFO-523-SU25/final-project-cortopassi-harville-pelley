@@ -1,7 +1,7 @@
 ---
-title: "Project title"
+title: "Predicting MLB Hall of Fame Induction"
 subtitle: "INFO 523 - Summer 2025 - Final Project"
-author: "Author names"
+author: "Austin Cortopassi, David Pelley, Nathan Harville"
 title-slide-attributes:
   data-background-image: images/watercolour_sys02_img34_teacup-ocean.jpg
   data-background-size: stretch
@@ -9,159 +9,84 @@ title-slide-attributes:
   data-slide-number: none
 format:
   revealjs:
-    theme:  ['data/customtheming.scss']
-  
+    theme: ['data/customtheming.scss']
 editor: visual
 jupyter: python3
 execute:
   echo: false
 ---
 
-```{python}
-#| label: load-packages
-#| include: false
+## Abstract & Motivation
 
-# Load packages here
-import pandas as pd
-import seaborn as sns
+- Hall of Fame selection is one of the most prestigious yet subjective honors in Major League Baseball.
 
-```
+### Project Goal
+- Build a machine learning model to predict Hall of Fame induction using career-level statistics and achievements.
 
-```{python}
-#| label: setup
-#| include: false
-#| 
-# Set up plot theme and figure resolution
-sns.set_theme(style="whitegrid")
-sns.set_context("notebook", font_scale=1.1)
+### Data Source
+- **Lahman Baseball Database** — player records spanning 100+ years
 
-import matplotlib.pyplot as plt
-plt.rcParams['figure.dpi'] = 300
-plt.rcParams['savefig.dpi'] = 300
-plt.rcParams['figure.figsize'] = (6, 6 * 0.618)
-```
+---
 
-```{python}
-#| label: load-data
-#| include: false
-# Load data in Python
-mtcars = sns.load_dataset('mpg').dropna()  # mtcars dataset is similar to the mpg dataset from seaborn
-mtcars['speed'] = mtcars['horsepower'] / mtcars['weight']
+## Approach
 
-penguins = sns.load_dataset('penguins').dropna()
-```
+- Data cleaning & feature engineering  
+- Model training with classification algorithms  
 
-# Using Quarto for presentations
+**Outcome**
+- Evaluate prediction accuracy  
+- Identify key career metrics that influence Hall of Fame voting outcomes  
 
-## Quarto
+---
 
--   The presentation is created using the Quarto CLI
+## Exploratory Data Analysis
 
--   `##` sets the start of a new slide
+- Visualized metric distributions and adjusted data for modeling  
+- Built correlation matrices to guide feature engineering  
+- Split models:  
+  - Pitchers (ERA, Wins, Strikeouts)  
+  - Position Players (AVG, HR, Hits)  
 
-## Layouts
+**Feature Engineering**
+- Batting Avg, Slugging %, On-Base %  
+- WHIP, K/BB  
 
-You can use plain text
+---
 
-::: columns
-::: {.column width="40%"}
--   or bullet points[^1]
-:::
+## Modeling Approach
 
-::: {.column width="60%"}
-or in two columns
-:::
-:::
+- Random Forest → interpretable, feature importance  
+- XGBoost → handles complex nonlinear patterns  
+- GaussianNB → simple baseline model  
 
-[^1]: And add footnotes
+**Hyperparameter Tuning**
+- RandomizedSearchCV  
 
--   like
+**Preparation**
+- Train/test split  
+- Scaling + PCA experiments  
 
--   this
+---
 
-## Code
+## Modeling Evaluation
 
-```{python}
-from sklearn.linear_model import LinearRegression
-import statsmodels.api as sm
-import pandas as pd
+**Metrics Used**
+- Accuracy → overall correctness  
+- Precision & Recall → false positives/negatives  
+- F1 Score → balance of precision & recall  
+- ROC-AUC → separation of inducted vs. non-inducted  
 
-# Fit a linear regression model
-X = mtcars[['speed']]
-y = mtcars['mpg']
-model = LinearRegression().fit(X, y)
+---
 
-# Summary of the model
-X2 = sm.add_constant(X)
-est = sm.OLS(y, X2)
-est2 = est.fit()
-print(est2.summary())
-```
+## Model Accuracy Results
 
-## Plots
+![Model Accuracy](images/model_accuracy.png)
 
-```{python}
-penguins['species'] = penguins['species'].apply(lambda x: "Adelie" if x == "Adelie" else "Other")
-sns.scatterplot(data=penguins, x='flipper_length_mm', y='body_mass_g', hue='species')
-plt.show()
-```
+---
 
-## Plot and text
+## Conclusion
 
-::: columns
-::: {.column width="50%"}
--   Some text
-
--   goes here
-:::
-
-::: {.column width="50%"}
-```{python}
-#| warning: false
-#| fig.width: 5.5
-fig, ax = plt.subplots(figsize=(5.5, 5.5 * 0.618))
-sns.boxplot(data=penguins, x='bill_length_mm', y='species', hue='species', ax=ax)
-plt.show()
-```
-:::
-:::
-
-# A new section...
-
-## Tables
-
-If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
-
-```{python}
-penguins.head().to_html()
-```
-
-## Images
-
-![Image credit: Danielle Navarro, Percolate.](images/watercolour_sys02_img34_teacup-ocean.png){fig-align="center" width="500"}
-
-## Math Expressions {.smaller}
-
-You can write LaTeX math expressions inside a pair of dollar signs, e.g. \$\\alpha+\\beta\$ renders $\alpha + \beta$. You can use the display style with double dollar signs:
-
-```         
-$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
-```
-
-$$
-\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i
-$$
-
-Limitations:
-
-1.  The source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting `$$` must appear in the very beginning of a line, followed immediately by a non-space character, and the ending `$$` must be at the end of a line, led by a non-space character;
-
-2.  There should not be spaces after the opening `$` or before the closing `$`.
-
-# Wrap up
-
-## Feeling adventurous?
-
--   You are welcomed to use the default styling of the slides. In fact, that's what I expect majority of you will do. You will differentiate yourself with the content of your presentation.
-
--   But some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs.
+- Career stats can predict Hall of Fame induction with high accuracy  
+- Models capture patterns but miss subjective factors (awards, reputation, historical context)  
+- Next steps: add advanced metrics & era adjustments for better accuracy  
+- Data analytics offers valuable insight into what drives Hall of Fame voting  

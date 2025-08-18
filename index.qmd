@@ -99,11 +99,11 @@ We evaluated model performance using several classification metrics:
 
 - **Batting PCA**
   - As shown in the figure below 5 metrics accounted for 90% of the variance in batting statistics.
-  - ![Batting PCA] (../images/batting_pca.png)
+  - ![Batting PCA](../images/batting_pca.png)
 
 - **Pitching PCA**
   - As shown in the figure below 4 metrics accounted for 90% of the variance in pitching statistics.
-  - ![Pitching PCA] (../images/pitching_pca.png)
+  - ![Pitching PCA](../images/pitching_pca.png)
 
 - **Batting Random Forest Results**
   - ![Batting Random Forest Results](../images/batting_rf_results.png)
@@ -127,8 +127,6 @@ We evaluated model performance using several classification metrics:
 ### Conclusion
 
 Our project showed that career statistics can be used to build models that predict Hall of Fame induction with significant accuracy. 
-
---- SUMMARIZE MODEL PERFORMANCES ---
 
 While the models capture many important patterns, they do not fully reflect the subjective nature of the voting process. Factors like awards, reputation, or historical context are not represented in the data but clearly influence outcomes. A possible next step would be to integrate some of these advanced metrics or account for era adjustments to improve accuracy. 
 

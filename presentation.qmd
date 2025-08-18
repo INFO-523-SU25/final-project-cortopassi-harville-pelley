@@ -78,6 +78,27 @@ execute:
 
 ---
 
+## Random Forest Results
+
+![Batting Random Forest Results](images/batting_rf_results.png)
+![Pitching Random Forest Results](images/pitching_rf_results.png)
+
+---
+
+## XGBoost Results
+
+![Batting XGBoost Results](images/batting_xgb_results.png)
+![Pitching XGBoost Results](images/pitching_xgb_results.png)
+
+---
+
+## Naive Bayes Results
+
+![Batting Naive Bayes Results](images/batting_nb_results.png)
+![Pitching Naive Bayes Results](images/pitching_nb_results.png)
+
+---
+
 ## Model Accuracy Results
 
 ![Model Accuracy](images/model_accuracy.png)

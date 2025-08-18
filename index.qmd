@@ -30,11 +30,14 @@ Our goal is not only to achieve high prediction accuracy, but also to identify w
 ## Project Write Up
 
 ### Data Preparation
-We utilized the Lahman Baseball Database, which is publicly available dataset containing a wide array of career statistics for MLB players dating all the way back to the late 1800s.
+We utilized the Lahman Baseball Database, a publicly available dataset containing a wide array of career statistics for MLB players dating all the way back to the late 1800s.
+
 The primary three statistics we used were:
-- Batting Statistics - includes hits, homeruns, batting average, RBIs, and other offensive statistics.
-- Pitching Statistics - includes earned run average (ERA), stirkeouts, wins, saves, and related metrics.
-- Fielding Statistics - includes putouts, assists, errors, and fielding percentage.
+- Batting Statistics: includes hits, homeruns, batting average, RBIs, and other offensive statistics.
+
+- Pitching Statistics: includes earned run average (ERA), stirkeouts, wins, saves, and related metrics.
+
+- Fielding Statistics: includes putouts, assists, errors, and fielding percentage.
 
 Our goal was to seperate and create two seperate models. One for making predictions on general players (players who bat regularly), and pitchers. To do this we needed to seperate datasets that contain statistics oriented more towards each of the two categories of players. 
 
@@ -43,11 +46,54 @@ Our target variable for the project was the column "Inducted" which indicates if
 ### Exploratory Data Analysis (EDA)
 Before training we needed to do some data analysis and implement some adjustments to better suit modeling. We addressed the following areas while working on the EDA portion of our project.
 
-- Distribution - Visualized the distribuitions of many of the statistics columns and analyzed which adjustments may need to be made to certain columns for the data to better suit modeling.
-- Correlations - Our team created correlation matrix to analyze the hidden relationships between certain data features.
-- Separation - As spoke about earlier we noticed there are two primary categories of players inducted into the hall of fame. Pitchers whos game is analyzed almost entirely based on their pitching statistics; ERA, wins, etc. And general players or batters (players who perform both in the field and at bat). Because of this distinct separartion in playe types, we needed to split into two datasets to analyze the positions better.
+- **Distribution** 
+  - Visualized the distribuitions of many of the statistics columns and analyzed which adjustments may need to be made to certain columns for the data to better suit modeling.
+- **Correlations**
+  - Our team created correlation matrix to analyze the hidden relationships between certain data features.
+- **Separation**
+  - As spoke about earlier we noticed there are two primary categories of players inducted into the hall of fame. Pitchers whos game is analyzed almost entirely based on their pitching statistics; ERA, wins, etc. And general players or batters (players who perform both in the field and at bat). Because of this distinct separartion in playe types, we needed to split into two datasets to analyze the positions better.
 
 ### Modeling Approach
+To predict Hall of Fame inductions we tested the following supervised learning models.
+
+- **RandomForestClassifier**  
+  - Decision trees that improve accuracy and helps identify which stats matter most.  
+
+- **XGBClassifier**  
+  - A gradient-boosted tree model that handles complex, nonlinear relationships in the data.  
+
+- **Gaussian Naive Bayes (GaussianNB)**  
+  - A simple probabilistic model used here as a baseline for comparison.  
+
+- **RandomizedSearchCV**  
+  - Applied to tune hyperparameters for Random Forest and XGBoost. This method tests a random set of parameter combinations, making it faster than a full grid search while still exploring the space effectively.  
+
+Before modeling, the data sets were split into training and test sets. We also experimented with scaling and using PCA on the datasets to improve perfomance. As we speak about later, results varied for different models.
 
 
+### Modeling Evaluation
+We evaluated model performance using several classification metrics:
 
+- **Accuracy** 
+  - Overall percentage of correct predictions.  
+- **Precision and Recall**
+  - Useful for checking how well the models avoid false positives and false negatives.  
+- **F1 Score** 
+  - Balances precision and recall into a single measure.  
+- **ROC-AUC** 
+  - Shows how well the models separate inducted from non-inducted players across thresholds.  
+
+------- NEED TO INCLUDE PERFORMANCE DETAILS HERE ------------------ 
+
+### Conclusions
+
+
+## Conclusion
+
+Our project showed that career statistics can be used to build models that predict Hall of Fame induction with reasonable accuracy. 
+
+--- SUMMARIZE MODEL PERFORMANCES ---
+
+While the models capture many important patterns, they do not fully reflect the subjective nature of the voting process. Factors like awards, reputation, or historical context are not represented in the data but clearly influence outcomes. A possible next step would be to integrate some of these advanced metrics or account for era adjustments to improve accuracy. 
+
+Overall, our project demonstrates that data analytics can provide useful insights into what drives Hall of Fame voting and sets the stage for more detailed models in the future.
